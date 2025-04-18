@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>وبکم</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: sans-serif;
+      margin-top: 50px;
+    }
+    video {
+      width: 80%;
+      max-width: 600px;
+      border: 2px solid #333;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>نمایش زنده دوربین</h1>
+  <video id="webcam" autoplay playsinline></video>
+
+  <script>
+    const video = document.getElementById("webcam");
+
+    async function initCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+      } catch (err) {
+        alert("دسترسی به دوربین ممکن نیست: " + err.message);
+      }
+    }
+
+    initCamera();
+  </script>
+</body>
+</html>
